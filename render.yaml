@@ -1,0 +1,47 @@
+services:
+  - type: web
+    name: ptcg-api
+    env: node
+    rootDir: api
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: JWT_SECRET
+        generateValue: true
+      - key: CORS_ORIGIN
+        value: https://ptcg-web.onrender.com
+      - key: MYSQL_HOST
+        fromDatabase:
+          name: ptcg-db
+          property: host
+      - key: MYSQL_PORT
+        fromDatabase:
+          name: ptcg-db
+          property: port
+      - key: MYSQL_USER
+        fromDatabase:
+          name: ptcg-db
+          property: user
+      - key: MYSQL_PASSWORD
+        fromDatabase:
+          name: ptcg-db
+          property: password
+      - key: MYSQL_DATABASE
+        fromDatabase:
+          name: ptcg-db
+          property: database
+
+  - type: static_site
+    name: ptcg-web
+    rootDir: public
+    plan: free
+    buildCommand: ""
+    publishPath: .
+
+databases:
+  - name: ptcg-db
+    plan: free
+    databaseName: ptcg
