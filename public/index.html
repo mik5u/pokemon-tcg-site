@@ -6,15 +6,16 @@
 </head>
 <body>
   <h1>Pokémon TCG Inventory & Decks</h1>
-  <p>This is your frontend. It will call the API at <code>/api</code>.</p>
+  <p>Open browser console to check API health.</p>
   <script>
-    const API = (window.location.origin.includes("onrender.com"))
-      ? "https://your-api-service.onrender.com/api"
+    const API = (window.location.hostname.endsWith("onrender.com"))
+      ? "https://ptcg-api.onrender.com/api"
       : "http://localhost:3000/api";
 
     fetch(API + "/health")
       .then(r => r.json())
-      .then(j => console.log("Health:", j));
+      .then(j => console.log("API health:", j))
+      .catch(e => console.error("API unreachable", e));
   </script>
 </body>
 </html>
