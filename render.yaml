@@ -13,26 +13,6 @@ services:
         generateValue: true
       - key: CORS_ORIGIN
         value: https://ptcg-web.onrender.com
-      - key: MYSQL_HOST
-        fromDatabase:
-          name: ptcg-db
-          property: host
-      - key: MYSQL_PORT
-        fromDatabase:
-          name: ptcg-db
-          property: port
-      - key: MYSQL_USER
-        fromDatabase:
-          name: ptcg-db
-          property: user
-      - key: MYSQL_PASSWORD
-        fromDatabase:
-          name: ptcg-db
-          property: password
-      - key: MYSQL_DATABASE
-        fromDatabase:
-          name: ptcg-db
-          property: database
 
   - type: static_site
     name: ptcg-web
